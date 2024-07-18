@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autism Support Chatbot</title>
+    
+    <style>
+        /* Add your CSS styling here */
+        /* Example styles for demonstration */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .options {
+            margin-bottom: 15px;
+        }
+        button {
+            margin-right: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #chat-display {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Autism Support Chatbot</h1>
+        <div class="options">
+            <button onclick="sendMessage('1')">What is autism?</button>
+            <button onclick="sendMessage('2')">What are the signs of autism?</button>
+            <br>
+            <br>
+            <button onclick="sendMessage('3')">How can I seek a diagnosis?</button>
+            <button onclick="sendMessage('4')">Communicate with a professional</button>
+            <br>
+            <br>
+            <button onclick="sendMessage('5')">Exit</button>
+        </div>
+        <div id="chat-display"></div>
+    </div>
+    <script>
+        function sendMessage(option) {
+            var userInput = option;
+            // Display user message in chat display
+            var chatDisplay = document.getElementById("chat-display");
+            var userMessage = document.createElement("p");
+            var userMessageText = "<strong>You:</strong> ";
+            switch(option) {
+                case '1':
+                    userMessageText += "What is autism?";
+                    break;
+                case '2':
+                    userMessageText += "What are the signs of autism?";
+                    break;
+                case '3':
+                    userMessageText += "How can I seek a diagnosis?";
+                    break;
+                case '4':
+                    userMessageText += "Communicate with a professional";
+                    break;
+                case '5':
+                    userMessageText += "Exit";
+                    break;
+                default:
+                    userMessageText += "Invalid option.";
+            }
+            userMessage.innerHTML = userMessageText;
+            chatDisplay.appendChild(userMessage);
+
+            // Send user message to server (Python code) for processing
+            // In this case, we're not actually sending data to a server, just displaying pre-defined responses
+            var botResponses = {
+                "1": "Autism is a complex disorder. I can provide information to help you understand more about it.",
+                "2": "Common signs of autism include difficulties with social interaction, repetitive behaviors, communication challenges, and sensory sensitivities.",
+                "3": "I recommend scheduling an appointment with a healthcare provider who specializes in diagnosing and treating autism, such as a psychiatrist, psychologist, or developmental pediatrician.",
+                "4": "You can communicate with a healthcare professional specializing in autism diagnosis and treatment. Contact Information: Email: autismsupport@example.com Phone: 123-456-7890",
+                "5": "Goodbye! Take care."
+            };
+            var botMessage = document.createElement("p");
+            botMessage.innerHTML = "<strong>Chatbot:</strong> " + botResponses[userInput];
+            chatDisplay.appendChild(botMessage);
+        }
+    </script>
+</body>
+</html>
